@@ -1,0 +1,84 @@
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K9PBNNBX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<script async>!(function (s, a, l, e, sv, i, ew, er) {try {(a =s[a] || s[l] || function () {throw 'no_xhr';}),(sv = i = 'https://salesviewer.org'),(ew = function(x){(s = new Image()), (s.src = 'https://salesviewer.org/tle.gif?sva=j0x4K6A5W5C3&u='+encodeURIComponent(window.location)+'&e=' + encodeURIComponent(x))}),(l = s.SV_XHR = function (d) {return ((er = new a()),(er.onerror = function () {if (sv != i) return ew('load_err');
+(sv = 'https://www.salesviewer.com/t'), setTimeout(l.bind(null, d), 0);}),(er.onload = function () {(s.execScript || s.eval).call(er, er.responseText);}),er.open('POST', sv, !0),(er.withCredentials = true),er.send(d),er);}),l('h_json=' + 1 * ('JSON' in s && void 0 !== JSON.parse) + '&h_wc=1&h_event=' + 1 * ('addEventListener' in s) + '&sva=' + e);} catch (x) {ew(x)}})(window, 'XDomainRequest', 'XMLHttpRequest', 'j0x4K6A5W5C3');</script>
+
+<script async type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="67a018bb-a284-48c5-86d2-75be83481d89";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+
+<script async type="text/javascript">
+_linkedin_partner_id = "5803570";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script><script async type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=5803570&fmt=gif" />
+</noscript>
+
+
+<script async type="text/javascript">
+  window._mfq = window._mfq || [];
+  (function() {
+    var mf = document.createElement("script");
+    mf.type = "text/javascript"; mf.defer = true;
+    mf.src = "//cdn.mouseflow.com/projects/e0524330-ba6a-4e1c-806e-e25a68b309ed.js";
+    document.getElementsByTagName("head")[0].appendChild(mf);
+  })();
+</script>
+
+<script async>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+o.onload=function(){window.trackingFunctions.onLoad({appId:"66ffac5af364910650b4fb24"})},
+document.head.appendChild(o)}initApollo();</script>
+
+
+<script>
+async function setCountryInSelect() {
+ try {
+   const ipData = await getCountryByIP();
+   const countryCode = ipData?.country;
+   
+   if (!countryCode) {
+     return;
+   }
+   
+   const countrySelects = document.querySelectorAll('select[name="country_code"]');
+   
+   countrySelects.forEach(countrySelect => {
+     const options = countrySelect.options;
+     let countryFound = false;
+     
+     for (let i = 0; i < options.length; i++) {
+       if (options[i].value === countryCode) {
+         countryFound = true;
+         break;
+       }
+     }
+     
+     if (countryFound) {
+       countrySelect.value = countryCode;
+       const event = new Event('change', { bubbles: true });
+       countrySelect.dispatchEvent(event);
+     }
+   });
+ } catch (error) {
+   console.error('Error setting country in select:', error);
+ }
+}
+
+setCountryInSelect();
+document.addEventListener('DOMContentLoaded', setCountryInSelect);
+</script>
