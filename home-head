@@ -1,0 +1,26 @@
+<link rel="alternate" hreflang="en" href="https://www.benetics.ai/en" />
+<link rel="alternate" hreflang="de" href="https://www.benetics.ai" />
+<link rel="alternate" hreflang="fr" href="https://www.benetics.ai/fr" />
+<link rel="alternate" hreflang="es" href="https://www.benetics.ai/es" />
+<link rel="alternate" hreflang="x-default" href="https://www.benetics.ai/" />
+<!-- [Attributes by Finsweet] CMS Nest -->
+<script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsnest@1/cmsnest.js"></script>
+
+
+<style>
+@media screen and (min-width: 1201px) {
+.fs-collection_list-wrapper {
+	position: absolute;
+}
+}
+
+/* FAQ Accordios */
+.acc-body {
+	display: none;
+}
+
+.acc-body-2 {
+	display: none;
+}
+
+</style>
