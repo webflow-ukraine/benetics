@@ -1,0 +1,103 @@
+<script>
+const europeanCountries = [
+  'AL', 'AD', 'AT', 'BY', 'BE', 'BA', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE',
+  'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU',
+  'MT', 'MD', 'MC', 'ME', 'NL', 'MK', 'NO', 'PL', 'PT', 'RO', 'RU', 'SM',
+  'RS', 'SK', 'SI', 'ES', 'SE', 'CH', 'UA', 'GB', 'VA'
+];
+
+async function getCountryByIP() {
+  const cachedData = window.sessionStorage.getItem('ipapi');
+  if (cachedData) {
+    try {
+      return JSON.parse(cachedData);
+    } catch (e) {}
+  }
+
+  try {
+    const response = await fetch('https://ipapi.co/json/', { mode: 'cors' });
+    if (response.ok) {
+      const data = await response.json();
+      window.sessionStorage.setItem('ipapi', JSON.stringify(data));
+      return data;
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    try {
+      const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+      if (response.ok) {
+        const data = await response.json();
+        const formattedData = {
+          ip: data.ip,
+          country: data.country_code,
+          country_name: data.country,
+          city: data.city
+        };
+        window.sessionStorage.setItem('ipapi', JSON.stringify(formattedData));
+        return formattedData;
+      } else {
+        throw new Error();
+      }
+    } catch (secondError) {
+      return { country: 'US' };
+    }
+  }
+}
+
+async function toggleContentBlocks() {
+  const ipData = await getCountryByIP();
+  const country = ipData?.country;
+  if (!country) {
+    return;
+  }
+
+  const usaCanadaBlocks = document.querySelectorAll('[data-country="us/ca"]');
+  const worldwideBlocks = document.querySelectorAll('[data-country="worldwide"]');
+  const DACHBlocks = document.querySelectorAll('[data-country="dach"]');
+  const europeBlocks = document.querySelectorAll('[data-country="europe"]');
+  const chBlocks = document.querySelectorAll('[data-country="ch"]');
+  const nonEuropeBlocks = document.querySelectorAll('[data-country="non-europe"]');
+
+  usaCanadaBlocks.forEach(block => block.classList.add('hidden'));
+  worldwideBlocks.forEach(block => block.classList.add('hidden'));
+  DACHBlocks.forEach(block => block.classList.add('hidden'));
+  europeBlocks.forEach(block => block.classList.add('hidden'));
+  chBlocks.forEach(block => block.classList.add('hidden'));
+  nonEuropeBlocks.forEach(block => block.classList.add('hidden'));
+
+  const isUSorCA = country === 'US' || country === 'CA';
+  const isDACH = country === 'CH' || country === 'DE' || country === 'AT';
+  const isNotUSorCA = !isUSorCA;
+  const isEuropeNotCH = europeanCountries.includes(country) && country !== 'CH';
+  const isCH = country === 'CH';
+  const isNotEurope = !europeanCountries.includes(country);
+
+  if (isUSorCA) {
+    usaCanadaBlocks.forEach(block => block.classList.remove('hidden'));
+  }
+
+  if (isDACH) {
+    DACHBlocks.forEach(block => block.classList.remove('hidden'));
+  }
+
+  if (isNotUSorCA) {
+    worldwideBlocks.forEach(block => block.classList.remove('hidden'));
+  }
+
+  if (isEuropeNotCH) {
+    europeBlocks.forEach(block => block.classList.remove('hidden'));
+  }
+
+  if (isCH) {
+    chBlocks.forEach(block => block.classList.remove('hidden'));
+  }
+
+  if (isNotEurope) {
+    nonEuropeBlocks.forEach(block => block.classList.remove('hidden'));
+  }
+}
+
+toggleContentBlocks();
+document.addEventListener('DOMContentLoaded', toggleContentBlocks);
+</script>
